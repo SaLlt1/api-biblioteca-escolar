@@ -1,2 +1,15 @@
 /* Estilo geral do sistema Biblioteca Escolar */
 /* Organizar em secoes: reset, layout, componentes (cards, tabelas, formularios), utilitarios, responsivo */
+
+
+ /* inicio do site la */
+ body {
+    h1 {
+        height: 25px;
+        font-family: impact, fantasy; color: #fefefd;
+        text-align: center;
+    }
+
+    background-color: #fee27f;
+    
+}
