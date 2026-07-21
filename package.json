@@ -1,0 +1,17 @@
+{
+  "name": "biblioteca-escolar",
+  "version": "1.0.0",
+  "description": "Sistema de gestao de Biblioteca Escolar - Projeto Final UC31",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "",
+    "build": "",
+    "start": "",
+    "test": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
