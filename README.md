@@ -10,7 +10,7 @@ Sistema web para gestão de uma biblioteca escolar (livros, alunos e empréstimo
 | --- | --- |
 | _preencher_ | Líder técnico |
 | _preencher_ | Back-end |
-| _preencher_ | Front-end |
+| _Paula_ | Front-end |
 | _preencher_ | QA / Testes |
 
 ## Tecnologias utilizadas
