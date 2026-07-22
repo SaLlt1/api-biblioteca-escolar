@@ -11,8 +11,12 @@ const livroRepository = new LivroRepository();
 
 // Listar todos
 router.get("/livros", authGuard, (req, res) => {
-  const livros = livroRepository.listarTodos();
-  res.render("livros/listar", { livros });
+  try {
+    const livros = livroRepository.listarTodos();
+    res.render("livros/listar", { livros });
+  } catch (erro) {
+    res.status(500).send("Erro ao carregar a lista de livros.");
+  }
 });
 
 // Formulário de criação
@@ -22,50 +26,66 @@ router.get("/livros/novo", authGuard, (req, res) => {
 
 // Criar
 router.post("/livros", authGuard, upload.single("capa"), (req, res) => {
-  const { titulo, autor, anoPublicacao } = req.body;
-  const capaUrl = req.file ? `/uploads/${req.file.filename}` : null;
+  try {
+    const { titulo, autor, anoPublicacao } = req.body;
+    const capaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-  const novoLivro = new Livro(randomUUID(), titulo, autor, Number(anoPublicacao), capaUrl);
-  const erros = novoLivro.validar();
+    const novoLivro = new Livro(randomUUID(), titulo, autor, Number(anoPublicacao), capaUrl);
+    const erros = novoLivro.validar();
 
-  if (erros.length > 0) {
-    return res.render("livros/formulario", { livro: null, erro: erros.join(" ") });
+    if (erros.length > 0) {
+      return res.render("livros/formulario", { livro: null, erro: erros.join(" ") });
+    }
+
+    livroRepository.criar(novoLivro);
+    res.redirect("/livros");
+  } catch (erro) {
+    res.status(500).render("livros/formulario", { livro: null, erro: "Erro ao criar o livro." });
   }
-
-  livroRepository.criar(novoLivro);
-  res.redirect("/livros");
 });
 
 // Formulário de edição
 router.get("/livros/:id/editar", authGuard, (req, res) => {
-  const livro = livroRepository.buscarPorId(req.params.id);
-  if (!livro) return res.status(404).send("Livro não encontrado.");
-  res.render("livros/formulario", { livro, erro: null });
+  try {
+    const livro = livroRepository.buscarPorId(req.params.id);
+    if (!livro) return res.status(404).send("Livro não encontrado.");
+    res.render("livros/formulario", { livro, erro: null });
+  } catch (erro) {
+    res.status(500).send("Erro ao carregar o livro.");
+  }
 });
 
 // Atualizar
 router.put("/livros/:id", authGuard, upload.single("capa"), (req, res) => {
-  const livroExistente = livroRepository.buscarPorId(req.params.id);
-  if (!livroExistente) return res.status(404).send("Livro não encontrado.");
+  try {
+    const livroExistente = livroRepository.buscarPorId(req.params.id);
+    if (!livroExistente) return res.status(404).send("Livro não encontrado.");
 
-  const { titulo, autor, anoPublicacao } = req.body;
-  const capaUrl = req.file ? `/uploads/${req.file.filename}` : livroExistente.getCapaUrl();
+    const { titulo, autor, anoPublicacao } = req.body;
+    const capaUrl = req.file ? `/uploads/${req.file.filename}` : livroExistente.getCapaUrl();
 
-  const livroAtualizado = new Livro(req.params.id, titulo, autor, Number(anoPublicacao), capaUrl);
-  const erros = livroAtualizado.validar();
+    const livroAtualizado = new Livro(req.params.id, titulo, autor, Number(anoPublicacao), capaUrl);
+    const erros = livroAtualizado.validar();
 
-  if (erros.length > 0) {
-    return res.render("livros/formulario", { livro: livroExistente, erro: erros.join(" ") });
+    if (erros.length > 0) {
+      return res.render("livros/formulario", { livro: livroExistente, erro: erros.join(" ") });
+    }
+
+    livroRepository.atualizar(req.params.id, livroAtualizado);
+    res.redirect("/livros");
+  } catch (erro) {
+    res.status(500).render("livros/formulario", { livro: null, erro: "Erro ao atualizar o livro." });
   }
-
-  livroRepository.atualizar(req.params.id, livroAtualizado);
-  res.redirect("/livros");
 });
 
 // Remover
 router.delete("/livros/:id", authGuard, (req, res) => {
-  livroRepository.remover(req.params.id);
-  res.redirect("/livros");
+  try {
+    livroRepository.remover(req.params.id);
+    res.redirect("/livros");
+  } catch (erro) {
+    res.status(500).send("Erro ao remover o livro.");
+  }
 });
 
 export default router;

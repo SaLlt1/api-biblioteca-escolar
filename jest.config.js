@@ -1,7 +1,6 @@
+// jest.config.js - configuração do Jest pra rodar testes em TypeScript
 module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
-    roots: ['<rootDir>/src'],
-    testMatch: ['**/__tests__/**/*.test.ts'],
-    moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  };
+  preset: "ts-jest",
+  testEnvironment: "node",
+  testMatch: ["**/__tests__/**/*.test.ts"],
+};
