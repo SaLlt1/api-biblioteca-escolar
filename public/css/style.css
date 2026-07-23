@@ -1,2 +1,39 @@
 /* Estilo geral do sistema Biblioteca Escolar */
 /* Organizar em secoes: reset, layout, componentes (cards, tabelas, formularios), utilitarios, responsivo */
+
+
+ /* inicio do site la */
+ body {
+    margin: 0;
+    background-color: #fefefd;  
+
+}
+
+h1 {
+    margin: 0;
+
+  letter-spacing: 5px;
+    font-family: lucida, cursive; color: #fefefd;
+    text-align: left;
+}
+
+.container {
+    margin: 0 auto;
+   max-width: 800px;
+    background-color: #FEE27F;
+    padding: 5px;
+    border-radius: 0%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+span {
+    font-family: lucida, cursive;
+    color: #4A2A21;
+    font-size: 0.85rem;
+    margin: 20px;
+}
+
+}
+
