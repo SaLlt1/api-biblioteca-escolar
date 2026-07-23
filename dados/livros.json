@@ -1,1 +1,74 @@
-[]
+[
+    {
+      "id": 1,
+      "titulo": "Dom Casmurro",
+      "autor": "Machado de Assis",
+      "isbn": "978-85-359-0277-5",
+      "categoria": "Romance",
+      "quantidade": 3,
+      "imagem": null
+    },
+    {
+      "id": 2,
+      "titulo": "O Pequeno Príncipe",
+      "autor": "Antoine de Saint-Exupéry",
+      "isbn": "978-85-325-0234-8",
+      "categoria": "Infantojuvenil",
+      "quantidade": 5,
+      "imagem": null
+    },
+    {
+      "id": 3,
+      "titulo": "Harry Potter e a Pedra Filosofal",
+      "autor": "J.K. Rowling",
+      "isbn": "978-85-325-1101-2",
+      "categoria": "Fantasia",
+      "quantidade": 4,
+      "imagem": null
+    },
+    {
+      "id": 4,
+      "titulo": "1984",
+      "autor": "George Orwell",
+      "isbn": "978-85-359-0227-0",
+      "categoria": "Ficção Científica",
+      "quantidade": 2,
+      "imagem": null
+    },
+    {
+      "id": 5,
+      "titulo": "O Cortiço",
+      "autor": "Aluísio Azevedo",
+      "isbn": "978-85-08-11340-9",
+      "categoria": "Romance",
+      "quantidade": 2,
+      "imagem": null
+    },
+    {
+      "id": 6,
+      "titulo": "Capitães da Areia",
+      "autor": "Jorge Amado",
+      "isbn": "978-85-01-06457-2",
+      "categoria": "Romance",
+      "quantidade": 3,
+      "imagem": null
+    },
+    {
+      "id": 7,
+      "titulo": "Vidas Secas",
+      "autor": "Graciliano Ramos",
+      "isbn": "978-85-325-2214-8",
+      "categoria": "Romance",
+      "quantidade": 0,
+      "imagem": null
+    },
+    {
+      "id": 8,
+      "titulo": "A Menina que Roubava Livros",
+      "autor": "Markus Zusak",
+      "isbn": "978-85-8057-034-1",
+      "categoria": "Drama",
+      "quantidade": 3,
+      "imagem": null
+    }
+  ]
