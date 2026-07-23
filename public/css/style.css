@@ -1,7 +1,7 @@
 /* Estilo geral do sistema Biblioteca Escolar */
 /* Organizar em secoes: reset, layout, componentes (cards, tabelas, formularios), utilitarios, responsivo */
 
-
+/* o basico */
 *{
     margin:0;
     padding:0;
@@ -19,9 +19,7 @@
     }
     
     
-    /* ===================================================
-    LAYOUT DO SITE :P
-    =================================================== */
+    /* layout do site :P */
     
     header{
     
@@ -144,3 +142,5 @@
         transform:scale(1.08);
         
         }        
+
+        /* falta o formulario ainda af */
