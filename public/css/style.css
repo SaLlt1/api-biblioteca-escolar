@@ -1,15 +1,146 @@
 /* Estilo geral do sistema Biblioteca Escolar */
 /* Organizar em secoes: reset, layout, componentes (cards, tabelas, formularios), utilitarios, responsivo */
 
-
- /* inicio do site la */
- body {
-    h1 {
-        height: 25px;
-        font-family: impact, fantasy; color: #fefefd;
-        text-align: center;
+/* o basico */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     }
-
-    background-color: #fee27f;
     
-}
+    body{
+    
+    font-family:Poppins,sans-serif;
+    
+    background:#fff9ef;
+    
+    color:#5d3a1a;
+    
+    }
+    
+    
+    /* layout do site :P */
+    
+    header{
+    
+    display:flex;
+    
+    justify-content:space-between;
+    
+    align-items:center;
+    
+    padding:20px 10%;
+    
+    background:#FEE27F;
+    
+    }
+    
+    .logo{
+    
+    font-family:'Patrick Hand',cursive;
+    
+    font-size:2rem;
+    
+    color:#9a4b16;
+    
+    }
+    
+    nav{
+
+        display:flex;
+        
+        gap:30px;
+        
+        }
+        
+        nav a{
+        
+        text-decoration:none;
+        
+        color:#6b3d19;
+        
+        font-weight:600;
+        
+        transition:.3s;
+        
+        }
+        
+        nav a:hover{
+        
+        color:#ff7b00;
+        
+        }
+        
+     /* parte do hero la */
+        
+        .hero{
+        
+        background:#FFA31A;
+        
+        display:flex;
+        
+        justify-content:space-between;
+        
+        align-items:center;
+        
+        padding:70px;
+        
+        border-radius:0 0 50px 50px;
+        
+        }
+        
+        .hero-text{
+        
+        width:50%;
+        
+        }
+        
+        .hero h1{
+        
+        font-size:3.4rem;
+        
+        font-family:'Patrick Hand';
+        
+        color:white;
+        
+        line-height:1.1;
+        
+        }
+        
+        .hero p{
+        
+        margin:25px 0;
+        
+        color:#fff7e8;
+        
+        font-size:18px;
+        
+        }
+        
+        .botao{
+        
+        display:inline-block;
+        
+        padding:15px 35px;
+        
+        background:white;
+        
+        color:#ff7600;
+        
+        border-radius:50px;
+        
+        text-decoration:none;
+        
+        font-weight:bold;
+        
+        transition:.3s;
+        
+        }
+        
+        .botao:hover{
+        
+        transform:scale(1.08);
+        
+        }        
+
+        /* falta o formulario ainda af */
