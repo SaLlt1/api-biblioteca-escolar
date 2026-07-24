@@ -295,15 +295,14 @@
     }
     
     .cardF{
+        margin: 15px;
         background:white;
-    
-        padding:800px;
-        
+        padding:80px;
         border-radius:35px;
-        
         box-shadow:0 10px 20px rgba(0,0,0,.08);
+        transition:0;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
         
-        align-items:center;
     }
 
     .cardF p{
@@ -312,7 +311,16 @@
 
     }
 
-    .cardF {
+    .cardF button{
+
+            margin: 40px;
+            padding:12px 25px;
+            border:none;
+            background:#ff7a3d;
+            color:white;
+            border-radius:30px;
+            cursor:pointer;
+            
 
     }
     /* ===================================================
