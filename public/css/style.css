@@ -11,10 +11,9 @@
     body{
     
     font-family:Poppins,sans-serif;
-    
     background:#fff9ef;
-    
     color:#5d3a1a;
+    min-height: 100vh;
     
     }
     
@@ -26,13 +25,9 @@
     header{
     
     display:flex;
-    
     justify-content:space-between;
-    
     align-items:center;
-    
-    padding:20px 10%;
-    
+    padding:20px 10%;  
     background:#FEE27F;
     
     }
@@ -40,9 +35,7 @@
     .logo{
     
     font-family:'Patrick Hand',cursive;
-    
     font-size:2rem;
-    
     color:#9a4b16;
     
     }
@@ -50,25 +43,34 @@
     nav{
 
         display:flex;
-        
         gap:30px;
         
         }
         
         nav a{
-        
         text-decoration:none;
-        
         color:#6b3d19;
-        
         font-weight:600;
-        
         transition:.3s;
-        
+        position: relative;
+        }
+
+        nav a::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 0;
+            background: #ff8A00;
+            transition: .3;
+        }
+
+        nav a:hover::after{
+            width: 100%;
         }
         
         nav a:hover{
-        
         color:#ff7b00;
         
         }
@@ -80,71 +82,43 @@
         .hero{
         
         background:#FFA31A;
-        
         display:flex;
-        
         justify-content:space-between;
-        
-        align-items:center;
-        
-        padding:70px;
-        
-        border-radius:0 0 50px 50px;
-        
+        align-items:center;    
+        padding:70px;   
+        border-radius:0 0 50px 50px;  
         }
         
         .hero-text{
-        
         width:50%;
-        
         }
         
         .hero h1{
-        
         font-size:3.4rem;
-        
         font-family:'Patrick Hand';
-        
         color:white;
-        
         line-height:1.1;
-        
         }
         
         .hero p{
-        
         margin:25px 0;
-        
         color:#fff7e8;
-        
         font-size:18px;
-        
         }
         
         .botao{
-        
         display:inline-block;
-        
         padding:15px 35px;
-        
         background:white;
-        
         color:#ff7600;
-        
         border-radius:50px;
-        
         text-decoration:none;
-        
         font-weight:bold;
-        
         transition:.3s;
-        
         }
         
         .botao:hover{
-        
         transform:scale(1.08);
-        
         }        
 
  /* ===================================================
@@ -155,9 +129,7 @@
 .onda{
 
     height:40px;
-    
     background:repeating-radial-gradient(circle at 20px 0,#FFA31A 0 20px,#fff9ef 20px 40px);
-    
     }
     
     
@@ -166,91 +138,55 @@
     =================================================== */
     
     .novidades{
-    
     padding:70px;
-    
     text-align:center;
-    
     }
     
     .novidades h2{
-    
     font-family:'Patrick Hand';
-    
     font-size:3rem;
-    
     color:#ff8a00;
-    
     }
     
     .cards{
-    
     margin-top:40px;
-    
-    display:grid;
-    
+    disPlay:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    
     gap:30px;
-    
     }
     
     .card{
-    
     background:white;
-    
     padding:20px;
-    
     border-radius:35px;
-    
     box-shadow:0 10px 20px rgba(0,0,0,.08);
-    
     transition:.3s;
-    
     }
     
     .card:hover{
-    
     transform:translateY(-8px);
-    
     }
     
     .imagem{
-    
     height:170px;
-    
     border-radius:25px;
-    
     background:#ffe5bc;
-    
     margin-bottom:15px;
-    
     }
     
     .card h3{
-    
     margin-bottom:15px;
-    
     font-family:'Patrick Hand';
-    
     font-size:30px;
-    
     }
     
     .card button{
-    
     padding:12px 25px;
-    
     border:none;
-    
     background:#ff7a3d;
-    
     color:white;
-    
     border-radius:30px;
-    
     cursor:pointer;
-    
     }
     
     
@@ -259,39 +195,24 @@
     =================================================== */
     
     form{
-    
     max-width:500px;
-    
     margin:auto;
-    
     display:flex;
-    
     flex-direction:column;
-    
     gap:18px;
-    
     }
     
     input{
-    
     padding:14px;
-    
     border-radius:15px;
-    
     border:2px solid #ffd48c;
-    
     font-size:16px;
-    
     }
     
     .erro{
-    
     color:red;
-    
-    font-size:14px;
-    
-    display:none;
-    
+    font-size: 14px;
+    display:none; 
     }
     
     .cardF{
@@ -308,11 +229,9 @@
     .cardF p{
         font-family:Poppins,sans-serif;
         color: #5d3a1a;
-
     }
 
     .cardF button{
-
             margin: 40px;
             padding:12px 25px;
             border:none;
@@ -320,39 +239,27 @@
             color:white;
             border-radius:30px;
             cursor:pointer;
-            
-
     }
+
     /* ===================================================
                          TABELAS
     =================================================== */
     
     table{
-    
     width:100%;
-    
     border-collapse:collapse;
-    
-    margin-top:30px;
-    
+    margiN-top:30px;
     background:white;
-    
     }
     
     th{
-    
     background:#FEE27F;
-    
     padding:15px;
-    
     }
     
     td{
-    
     padding:15px;
-    
     border-bottom:1px solid #eee;
-    
     }
     
     
@@ -361,15 +268,10 @@
     =================================================== */
     
     .centralizar{
-    
     text-align:center;
-    
     }
-    
     .mt{
-    
     margin-top:30px;
-    
     }
     
     
@@ -378,15 +280,10 @@
     =================================================== */
     
     footer{
-    
     padding:30px;
-    
     background:#FEE27F;
-    
     text-align:center;
-    
     margin-top:80px;
-    
     }
     
     
@@ -395,27 +292,15 @@
     =================================================== */
     
     @media(max-width:900px){
-    
     .hero{
-    
     flex-direction:column;
-    
     text-align:center;
-    
     }
-    
     .hero-text{
-    
     width:100%;
-    
     }
-    
+
     nav{
-    
     display:none;
-    
     }
-    
-    }
-    
-    
+}
