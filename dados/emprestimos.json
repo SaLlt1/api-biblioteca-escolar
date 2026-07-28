@@ -1,1 +1,38 @@
-[]
+[
+    {
+      "id": 1,
+      "livroId": 1,
+      "alunoId": 1,
+      "dataEmprestimo": "2026-06-10",
+      "dataDevolucaoPrevista": "2026-06-24",
+      "dataDevolucaoReal": "2026-06-20",
+      "status": "devolvido"
+    },
+    {
+      "id": 2,
+      "livroId": 3,
+      "alunoId": 2,
+      "dataEmprestimo": "2026-07-01",
+      "dataDevolucaoPrevista": "2026-07-15",
+      "dataDevolucaoReal": null,
+      "status": "emprestado"
+    },
+    {
+      "id": 3,
+      "livroId": 7,
+      "alunoId": 3,
+      "dataEmprestimo": "2026-06-25",
+      "dataDevolucaoPrevista": "2026-07-09",
+      "dataDevolucaoReal": null,
+      "status": "atrasado"
+    },
+    {
+      "id": 4,
+      "livroId": 5,
+      "alunoId": 4,
+      "dataEmprestimo": "2026-07-15",
+      "dataDevolucaoPrevista": "2026-07-29",
+      "dataDevolucaoReal": null,
+      "status": "emprestado"
+    }
+  ]
