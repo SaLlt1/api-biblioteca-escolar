@@ -1,1 +1,25 @@
 <!-- Tela de login -->
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+<section>
+    <h2>Login</h2>
+    <p>Acesse o sistema da biblioteca.</p>
+
+    <div class="cardF">
+        <% if (typeof erro !== 'undefined' && erro) { %>
+            <p class="erro" style="display: block; margin-bottom: 20px;"><%= erro %></p>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Seu E-mail" required>
+            <input type="password" name="senha" placeholder="Sua Senha" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+        
+        <p style="margin-top: 20px;">
+            Não tem uma conta? <a href="/registro" style="color: #ff7600; font-weight: bold;">Registre-se aqui</a>
+        </p>
+    </div>
+</section>
+<%- include('../partials/footer') %>
