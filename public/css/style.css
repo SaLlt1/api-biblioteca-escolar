@@ -6,301 +6,357 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    }
-    
-    body{
-    
+}
+
+body{
     font-family:Poppins,sans-serif;
     background:#fff9ef;
     color:#5d3a1a;
     min-height: 100vh;
-    
-    }
-    
-    
-    /*===================================================
-                         layout do site :P
-    ===================================================*/
-    
-    header{
-    
+}
+
+
+/*===================================================
+                    layout do site :P
+===================================================*/
+
+header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:20px 10%;  
     background:#FEE27F;
-    
-    }
-    
-    .logo{
-    
+}
+
+.logo{
     font-family:'Patrick Hand',cursive;
     font-size:2rem;
     color:#9a4b16;
-    
-    }
-    
-    nav{
+}
 
-        display:flex;
-        gap:30px;
-        
-        }
-        
-        nav a{
-        text-decoration:none;
-        color:#6b3d19;
-        font-weight:600;
-        transition:.3s;
-        position: relative;
-        }
+nav{
+    display:flex;
+    gap:30px;
+}
 
-        nav a::after{
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 0;
-            background: #ff8A00;
-            transition: .3;
-        }
+nav a{
+    text-decoration:none;
+    color:#6b3d19;
+    font-weight:600;
+    transition:.3s;
+    position: relative;
+}
 
-        nav a:hover::after{
-            width: 100%;
-        }
-        
-        nav a:hover{
-        color:#ff7b00;
-        
-        }
-        
-     /* ===================================================
-                              HERO :D
-       =================================================== */
-        
-        .hero{
-        
-        background:#FFA31A;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;    
-        padding:70px;   
-        border-radius:0 0 50px 50px;  
-        }
-        
-        .hero-text{
-        width:50%;
-        }
-        
-        .hero h1{
-        font-size:3.4rem;
-        font-family:'Patrick Hand';
-        color:white;
-        line-height:1.1;
-        }
-        
-        .hero p{
-        margin:25px 0;
-        color:#fff7e8;
-        font-size:18px;
-        }
-        
-        .botao{
-        display:inline-block;
-        padding:15px 35px;
-        background:white;
-        color:#ff7600;
-        border-radius:50px;
-        text-decoration:none;
-        font-weight:bold;
-        transition:.3s;
-        }
-        
-        .botao:hover{
-        transform:scale(1.08);
-        }        
+nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    border-radius: 20px;
+    background: #ff8A00;
+    transition: .3s; 
+}
+}
 
- /* ===================================================
-                         SEPARADOR
-  ===================================================*/
+nav a:hover::after{
+    width: 100%;
+}
 
-        
+nav a:hover{
+    color:#ff7b00;
+}
+
+
+/* ===================================================
+                        HERO :D
+=================================================== */
+
+.hero{
+    background:#FFA31A;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;    
+    padding:70px;   
+    border-radius:0 0 50px 50px;  
+}
+
+.hero-text{
+    width:50%;
+}
+
+.hero h1{
+    font-size:3.4rem;
+    font-family:'Patrick Hand';
+    color:white;
+    line-height:1.1;
+}
+
+.hero p{
+    margin:25px 0;
+    color:#fff7e8;
+    font-size:18px;
+}
+
+.botao{
+    display:inline-block;
+    padding:15px 35px;
+    background:white;
+    color:#ff7600;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao:hover{
+    transform:scale(1.08);
+}        
+
+
+/* ===================================================
+                        SEPARADOR
+===================================================*/
+
 .onda{
-
     height:40px;
     background:repeating-radial-gradient(circle at 20px 0,#FFA31A 0 20px,#fff9ef 20px 40px);
-    }
-    
-    
-    /* ===================================================
+}
+
+
+/* ===================================================
                             CARDS :O
-    =================================================== */
-    
-    .novidades{
+=================================================== */
+
+.novidades{
     padding:70px;
     text-align:center;
-    }
-    
-    .novidades h2{
+}
+
+.novidades h2{
     font-family:'Patrick Hand';
     font-size:3rem;
     color:#ff8a00;
-    }
-    
-    .cards{
+}
+
+.novidades p{
+    margin-top:10px;
+    color:#7A5732;
+    font-size:17px;
+}
+
+.cards{
     margin-top:40px;
-    disPlay:grid;
+    display:grid; 
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:30px;
-    }
-    
-    .card{
+}
+
+.card{
     background:white;
     padding:20px;
     border-radius:35px;
     box-shadow:0 10px 20px rgba(0,0,0,.08);
     transition:.3s;
-    }
-    
-    .card:hover{
+}
+
+.card:hover{
     transform:translateY(-8px);
-    }
-    
-    .imagem{
+}
+
+.imagem{
     height:170px;
     border-radius:25px;
     background:#ffe5bc;
     margin-bottom:15px;
-    }
-    
-    .card h3{
+}
+
+.card h3{
     margin-bottom:15px;
     font-family:'Patrick Hand';
     font-size:30px;
-    }
-    
-    .card button{
+}
+
+.card button{
     padding:12px 25px;
     border:none;
     background:#ff7a3d;
     color:white;
     border-radius:30px;
     cursor:pointer;
-    }
-    
-    
-    /* ===================================================
-                          FORMULÁRIOS
-    =================================================== */
-    
-    form{
+}
+
+
+/* ===================================================
+                        PESQUISA
+=================================================== */
+
+.pesquisa{
+    width:100%;
+    max-width:750px;
+    margin:35px auto;
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border-radius:50px; /* Deixa em formato de pílula */
+    overflow:hidden;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.pesquisa input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:18px 25px;
+    font-size:16px;
+    background:transparent;
+}
+
+.pesquisa input::placeholder{
+    color:#B08A64;
+}
+
+.pesquisa button{
+    width:70px;
+    height:60px;
+    border:none;
+    background:#FF8A00;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.pesquisa button:hover{
+    background:#FF9830;
+    transform:scale(1.05);
+}
+
+
+/* ===================================================
+                         FORMULÁRIOS
+=================================================== */
+
+form{
     max-width:500px;
     margin:auto;
     display:flex;
     flex-direction:column;
     gap:18px;
-    }
-    
-    input{
+}
+
+input{
     padding:14px;
     border-radius:15px;
     border:2px solid #ffd48c;
     font-size:16px;
-    }
-    
-    .erro{
+}
+
+.erro{
     color:red;
     font-size: 14px;
     display:none; 
-    }
-    
-    .cardF{
-        margin: 15px;
-        background:white;
-        padding:80px;
-        border-radius:35px;
-        box-shadow:0 10px 20px rgba(0,0,0,.08);
-        transition:0;
-        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        
-    }
+}
 
-    .cardF p{
-        font-family:Poppins,sans-serif;
-        color: #5d3a1a;
-    }
+.cardF{
+    margin: 15px;
+    background:white;
+    padding:80px;
+    border-radius:35px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+    transition:0;
+    animation:aparecer .5s ease;
+}
 
-    .cardF button{
-            margin: 40px;
-            padding:12px 25px;
-            border:none;
-            background:#ff7a3d;
-            color:white;
-            border-radius:30px;
-            cursor:pointer;
-    }
+.cardF p{
+    font-family:Poppins,sans-serif;
+    color: #5d3a1a;
+}
 
-    /* ===================================================
+.cardF button{
+    margin: 40px;
+    padding:12px 25px;
+    border:none;
+    background:#ff7a3d;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===================================================
                          TABELAS
-    =================================================== */
-    
-    table{
+=================================================== */
+
+table{
     width:100%;
     border-collapse:collapse;
-    margiN-top:30px;
+    margin-top:30px;
     background:white;
-    }
-    
-    th{
+}
+
+th{
     background:#FEE27F;
     padding:15px;
-    }
-    
-    td{
+}
+
+td{
     padding:15px;
     border-bottom:1px solid #eee;
-    }
-    
-    
-    /* ===================================================
+}
+
+
+/* ===================================================
                          UTILITÁRIOS
-    =================================================== */
-    
-    .centralizar{
+=================================================== */
+
+.centralizar{
     text-align:center;
-    }
-    .mt{
+}
+
+.mt{
     margin-top:30px;
-    }
-    
-    
-    /* ===================================================
+}
+
+
+/* ===================================================
                          RODAPÉ
-    =================================================== */
-    
-    footer{
+=================================================== */
+
+footer{
     padding:30px;
     background:#FEE27F;
     text-align:center;
     margin-top:80px;
-    }
-    
-    
-    /* ===================================================
+}
+
+
+/* ===================================================
                          RESPONSIVO
-    =================================================== */
-    
-    @media(max-width:900px){
+=================================================== */
+
+@media(max-width:900px){
     .hero{
-    flex-direction:column;
-    text-align:center;
+        flex-direction:column;
+        text-align:center;
     }
+
     .hero-text{
-    width:100%;
+        width:100%;
     }
 
     nav{
-    display:none;
+        display:none;
     }
 }
