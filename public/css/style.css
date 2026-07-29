@@ -67,7 +67,10 @@ nav a:hover{
     color:#ff7b00;
 }
 
-
+section {
+    text-align: center;   
+    padding: 40px 20px;   
+}
 /* ===================================================
                         HERO :D
 =================================================== */
@@ -272,18 +275,30 @@ input{
 .cardF p{
     font-family:Poppins,sans-serif;
     color: #5d3a1a;
+    text-align: center;
 }
 
-.cardF button{
-    margin: 40px;
-    padding:12px 25px;
-    border:none;
-    background:#ff7a3d;
-    color:white;
-    border-radius:30px;
-    cursor:pointer;
+.cardF a{
+    color: #ff7600;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.cardF a:hover {
+    color: #ff3b00; 
+    text-decoration: underline; 
 }
 
+.cardF button {
+    margin: 20px 0 0 0; 
+    padding: 12px 25px;
+    border: none;
+    background: #ff7a3d;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%; 
+}
 @keyframes aparecer{
     from{
         opacity:0;
@@ -343,7 +358,7 @@ footer{
 
 
 /* ===================================================
-                         RESPONSIVO
+                   RESPONSIVO
 =================================================== */
 
 @media(max-width:900px){
