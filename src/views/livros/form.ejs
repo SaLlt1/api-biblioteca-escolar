@@ -1,10 +1,10 @@
-<!-- Formulario de cadastro/edicao de livro (inclui upload de imagem) -->
+<!-- Formulario de cadastro de aluno -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Escolar</title>
+    <title>Biblioteca Escolar - Cadastro de Aluno</title>
 
     <link rel="stylesheet" href="/css/style.css">
 
@@ -26,15 +26,35 @@
     </nav>
 
 </header>
+
 <section class="novidades">
 
     <h2>Faça seu cadastro!</h2>
     <p>
         obs: deixe todos os campos preenchidos...
     </p>
-    <div class="...">
-        
+
+    <!-- Estrutura do Card de Formulário usando as classes do seu CSS -->
+    <div class="cardF">
+        <form id="formCadastro">
+            <input type="text" id="nome" name="nome" placeholder="Nome completo do aluno" required>
+            
+            <input type="email" id="email" name="email" placeholder="E-mail do aluno" required>
+            
+            <input type="text" id="matricula" name="matricula" placeholder="Número da matrícula" required>
+            
+            <input type="text" id="turma" name="turma" placeholder="Série / Turma (Ex: 3º Ano A)" required>
+            
+            <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+
+            <!-- Mensagem de erro configurada no CSS (.erro) -->
+            <span class="erro" id="mensagemErro">Por favor, preencha todos os campos corretamente!</span>
+
+            <button type="submit">Cadastrar Aluno</button>
+        </form>
     </div>
+
+</section>
 
 <footer>
 
