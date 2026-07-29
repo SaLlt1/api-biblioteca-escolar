@@ -58,7 +58,6 @@ nav a::after{
     background: #ff8A00;
     transition: .3s; 
 }
-}
 
 nav a:hover::after{
     width: 100%;
@@ -199,7 +198,7 @@ nav a:hover{
     display:flex;
     align-items:center;
     background:#fff;
-    border-radius:50px; /* Deixa em formato de pílula */
+    border-radius:50px; 
     overflow:hidden;
     box-shadow:0 8px 18px rgba(0,0,0,.08);
 }
@@ -260,9 +259,10 @@ input{
 }
 
 .cardF{
-    margin: 15px;
+    max-width: 500px;
+    margin: 30px auto;
     background:white;
-    padding:80px;
+    padding:60px;
     border-radius:35px;
     box-shadow:0 10px 20px rgba(0,0,0,.08);
     transition:0;
