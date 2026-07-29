@@ -1,1 +1,50 @@
 <!-- Detalhes de um aluno -->
+<%- include("../partials/header", { title: `${aluno.getNome()} | Biblioteca Escolar`, currentPath: "/alunos" }) %>
+
+<main id="conteudo-principal">
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div>
+        <p class="eyebrow">Leitores cadastrados</p>
+        <h1>Detalhes do aluno</h1>
+        <p>Consulte as informações registradas para este estudante.</p>
+      </div>
+      <div class="inline-actions">
+        <a class="button button-ghost" href="/alunos">← Voltar</a>
+        <a class="button button-primary" href="/alunos/<%= aluno.getId() %>/editar">Editar aluno</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container detail-layout">
+      <article class="detail-card">
+        <h2><%= aluno.getNome() %></h2>
+        <dl class="detail-list">
+          <div>
+            <dt>Turma</dt>
+            <dd><%= aluno.getTurma() %></dd>
+          </div>
+          <div>
+            <dt>Matrícula</dt>
+            <dd><%= aluno.getMatricula() %></dd>
+          </div>
+          <div>
+            <dt>Situação</dt>
+            <dd><span class="status status-available">Cadastro ativo</span></dd>
+          </div>
+        </dl>
+      </article>
+
+      <aside class="detail-card">
+        <h2>Próximo passo</h2>
+        <p class="field-help">Este aluno já pode ser selecionado ao registrar um novo empréstimo.</p>
+        <div class="form-actions">
+          <a class="button button-secondary" href="/emprestimos/novo">Registrar empréstimo</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>
