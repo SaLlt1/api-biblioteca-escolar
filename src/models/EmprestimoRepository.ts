@@ -1,4 +1,3 @@
-// EmprestimoRepository.ts - lê e escreve os empréstimos no arquivo dados/emprestimos.json
 import fs from "fs";
 import path from "path";
 import { Emprestimo } from "../entities/Emprestimo";
@@ -23,7 +22,7 @@ export class EmprestimoRepository {
   }
 
   buscarPorId(id: string): Emprestimo | null {
-    const emprestimo = this.listarTodos().find((e) => e.getId() === id);
+    const emprestimo = this.listarTodos().find((e) => String(e.getId()) === String(id));
     return emprestimo ?? null;
   }
 
@@ -35,7 +34,7 @@ export class EmprestimoRepository {
 
   atualizar(id: string, emprestimoAtualizado: Emprestimo): boolean {
     const dados = lerArquivo();
-    const index = dados.findIndex((e) => e.id === id);
+    const index = dados.findIndex((e) => String(e.id) === String(id));
     if (index === -1) return false;
     dados[index] = emprestimoAtualizado.toJSON();
     escreverArquivo(dados);
@@ -44,9 +43,13 @@ export class EmprestimoRepository {
 
   remover(id: string): boolean {
     const dados = lerArquivo();
-    const novaLista = dados.filter((e) => e.id !== id);
+    const novaLista = dados.filter((e) => String(e.id) !== String(id));
     if (novaLista.length === dados.length) return false;
     escreverArquivo(novaLista);
     return true;
+  }
+
+  limpar(): void {
+    escreverArquivo([]);
   }
 }
