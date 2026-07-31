@@ -1,1 +1,25 @@
 <!-- Detalhes de um emprestimo (com opcao de registrar devolucao) -->
+<%- include('../partials/header', { titulo: livro.getTitulo() }) %>
+<%- include('../partials/nav', { paginaAtual: 'livros' }) %>
+
+<section class="novidades">
+
+    <h2><%= livro.getTitulo() %></h2>
+
+    <div class="cardF">
+
+        <% if (livro.getCapaUrl()) { %>
+            <img src="<%= livro.getCapaUrl() %>" alt="Capa de <%= livro.getTitulo() %>" width="150">
+        <% } %>
+
+        <p><strong>Autor:</strong> <%= livro.getAutor() %></p>
+        <p><strong>Ano de publicação:</strong> <%= livro.getAnoPublicacao() %></p>
+
+        <a href="/livros/<%= livro.getId() %>/editar"><button>Editar</button></a>
+        <a href="/livros"><button>Voltar para a lista</button></a>
+
+    </div>
+
+</section>
+
+<%- include('../partials/footer') %>
