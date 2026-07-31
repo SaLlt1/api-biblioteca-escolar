@@ -1,8 +1,72 @@
 <!-- Listagem de livros -->
 <!-- Detalhes de um livro -->
-<%- include('partials/header') %>
-<%- include('partials/nav') %>
+<!-- Listagem de livros -->
+<%- include('../partials/header', { titulo: 'Livros' }) %>
+<%- include('../partials/nav', { paginaAtual: 'livros' }) %>
+
 <section class="novidades">
 
+    <h2>Acervo de Livros</h2>
+
+    <p>
+        <a href="/livros/novo" class="botao">+ Novo Livro</a>
+    </p>
+
+    <div class="pesquisa">
+        <input
+            type="search"
+            id="buscaLivros"
+            placeholder="Buscar por título, autor ou ano..."
+        >
+        <button type="button" aria-label="Buscar">🔍</button>
+    </div>
+
+    <% if (livros.length === 0) { %>
+
+        <p class="centralizar mt">Nenhum livro cadastrado no acervo ainda.</p>
+
+    <% } else { %>
+
+        <table id="tabelaLivros">
+            <thead>
+                <tr>
+                    <th>Capa</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Ano</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% livros.forEach(function (livro) { %>
+                    <tr>
+                        <td>
+                            <% if (livro.getCapaUrl()) { %>
+                                <img src="<%= livro.getCapaUrl() %>" alt="Capa" width="40" style="border-radius: 5px;">
+                            <% } else { %>
+                                <div style="width: 40px; height: 55px; background: #eee; border-radius: 5px; display: inline-block;"></div>
+                            <% } %>
+                        </td>
+                        <td><%= livro.getTitulo() %></td>
+                        <td><%= livro.getAutor() %></td>
+                        <td><%= livro.getAnoPublicacao() %></td>
+                        <td>
+                            <a href="/livros/<%= livro.getId() %>">Detalhes</a>
+                            &nbsp;|&nbsp;
+                            <a href="/livros/<%= livro.getId() %>/editar">Editar</a>
+                            &nbsp;|&nbsp;
+                            <form action="/livros/<%= livro.getId() %>?_method=DELETE" method="POST" style="display:inline"
+                                  onsubmit="return confirm('Tem certeza que deseja remover este livro do acervo?');">
+                                <button type="submit" class="link-botao">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+    <% } %>
+
 </section>
-<%- include('partials/footer') %>
+
+<%- include('../partials/footer', { script: 'livros' }) %>
