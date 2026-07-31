@@ -1,4 +1,3 @@
-// UsuarioRepository.ts - lê e escreve os usuários no arquivo dados/usuarios.json
 import fs from "fs";
 import path from "path";
 import { Usuario } from "../entities/Usuario";
@@ -23,7 +22,7 @@ export class UsuarioRepository {
   }
 
   buscarPorId(id: string): Usuario | null {
-    const usuario = this.listarTodos().find((u) => u.getId() === id);
+    const usuario = this.listarTodos().find((u) => String(u.getId()) === String(id));
     return usuario ?? null;
   }
 
@@ -40,7 +39,7 @@ export class UsuarioRepository {
 
   atualizar(id: string, usuarioAtualizado: Usuario): boolean {
     const dados = lerArquivo();
-    const index = dados.findIndex((u) => u.id === id);
+    const index = dados.findIndex((u) => String(u.id) === String(id));
     if (index === -1) return false;
     dados[index] = usuarioAtualizado.toJSON();
     escreverArquivo(dados);
@@ -49,9 +48,13 @@ export class UsuarioRepository {
 
   remover(id: string): boolean {
     const dados = lerArquivo();
-    const novaLista = dados.filter((u) => u.id !== id);
+    const novaLista = dados.filter((u) => String(u.id) !== String(id));
     if (novaLista.length === dados.length) return false;
     escreverArquivo(novaLista);
     return true;
+  }
+
+  limpar(): void {
+    escreverArquivo([]);
   }
 }
