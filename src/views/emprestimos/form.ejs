@@ -1,8 +1,86 @@
-<!-- Formulario de novo emprestimo -->
-<!-- Detalhes de um livro -->
-<%- include('partials/header') %>
-<%- include('partials/nav') %>
+<%- include('../partials/header', { titulo: emprestimo ? 'Editar Empréstimo' : 'Novo Empréstimo' }) %>
+<%- include('../partials/nav', { paginaAtual: 'emprestimos' }) %>
+
 <section class="novidades">
 
+    <h2><%= emprestimo ? 'Editar Empréstimo' : 'Registrar Empréstimo' %></h2>
+    <p>
+        Selecione o livro, o aluno e as datas do empréstimo.
+    </p>
+
+    <div class="cardF">
+
+        <% if (typeof erro !== 'undefined' && erro) { %>
+            <p class="erro" style="display:block;"><%= erro %></p>
+        <% } %>
+
+        <form
+            action="<%= emprestimo ? '/emprestimos/' + emprestimo.getId() + '?_method=PUT' : '/emprestimos' %>"
+            method="POST"
+            novalidate
+        >
+
+            <label for="livroId">Livro</label>
+            <select id="livroId" name="livroId" required>
+                <option value="">Selecione um livro</option>
+                <% livros.forEach(function (livro) { %>
+                    <option
+                        value="<%= livro.getId() %>"
+                        <%= emprestimo && emprestimo.getLivroId() === livro.getId() ? 'selected' : '' %>
+                    >
+                        <%= livro.getTitulo() %>
+                    </option>
+                <% }); %>
+            </select>
+
+            <label for="alunoId">Aluno</label>
+            <select id="alunoId" name="alunoId" required>
+                <option value="">Selecione um aluno</option>
+                <% alunos.forEach(function (aluno) { %>
+                    <option
+                        value="<%= aluno.getId() %>"
+                        <%= emprestimo && emprestimo.getAlunoId() === aluno.getId() ? 'selected' : '' %>
+                    >
+                        <%= aluno.getNome() %> (<%= aluno.getTurma() %>)
+                    </option>
+                <% }); %>
+            </select>
+
+            <label for="dataEmprestimo">Data do empréstimo</label>
+            <input
+                type="date"
+                id="dataEmprestimo"
+                name="dataEmprestimo"
+                value="<%= emprestimo ? emprestimo.getDataEmprestimo() : '' %>"
+                required
+            >
+
+            <label for="dataDevolucaoPrevista">Data de devolução prevista</label>
+            <input
+                type="date"
+                id="dataDevolucaoPrevista"
+                name="dataDevolucaoPrevista"
+                value="<%= emprestimo ? emprestimo.getDataDevolucaoPrevista() : '' %>"
+                required
+            >
+
+            <% if (emprestimo) { %>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="devolvido"
+                        <%= emprestimo.isDevolvido() ? 'checked' : '' %>
+                    >
+                    Já foi devolvido
+                </label>
+            <% } %>
+
+            <button type="submit"><%= emprestimo ? 'Salvar alterações' : 'Registrar empréstimo' %></button>
+
+        </form>
+
+    </div>
+
 </section>
-<%- include('partials/footer') %>
+
+<%- include('../partials/footer', { script: 'emprestimos' }) %>
