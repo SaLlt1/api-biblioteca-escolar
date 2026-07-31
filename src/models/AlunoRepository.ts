@@ -1,4 +1,3 @@
-// AlunoRepository.ts - lê e escreve os alunos no arquivo dados/alunos.json
 import fs from "fs";
 import path from "path";
 import { Aluno } from "../entities/Aluno";
@@ -23,7 +22,7 @@ export class AlunoRepository {
   }
 
   buscarPorId(id: string): Aluno | null {
-    const aluno = this.listarTodos().find((a) => a.getId() === id);
+    const aluno = this.listarTodos().find((a) => String(a.getId()) === String(id));
     return aluno ?? null;
   }
 
@@ -35,7 +34,7 @@ export class AlunoRepository {
 
   atualizar(id: string, alunoAtualizado: Aluno): boolean {
     const dados = lerArquivo();
-    const index = dados.findIndex((a) => a.id === id);
+    const index = dados.findIndex((a) => String(a.id) === String(id));
     if (index === -1) return false;
     dados[index] = alunoAtualizado.toJSON();
     escreverArquivo(dados);
@@ -44,9 +43,14 @@ export class AlunoRepository {
 
   remover(id: string): boolean {
     const dados = lerArquivo();
-    const novaLista = dados.filter((a) => a.id !== id);
+    const novaLista = dados.filter((a) => String(a.id) !== String(id));
     if (novaLista.length === dados.length) return false;
     escreverArquivo(novaLista);
     return true;
+  }
+
+  // ADICIONE ESTE MÉTODO AQUI:
+  limpar(): void {
+    escreverArquivo([]);
   }
 }
