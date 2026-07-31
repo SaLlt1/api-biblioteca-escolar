@@ -1,11 +1,9 @@
-// LivroRepository.ts - lê e escreve os livros no arquivo dados/livros.json
 import fs from "fs";
 import path from "path";
 import { Livro } from "../entities/Livro";
 
 const CAMINHO_ARQUIVO = path.join(__dirname, "..", "..", "dados", "livros.json");
 
-// Lê o arquivo JSON e devolve um array de objetos (ou [] se estiver vazio/não existir)
 function lerArquivo(): any[] {
   if (!fs.existsSync(CAMINHO_ARQUIVO)) return [];
   const conteudo = fs.readFileSync(CAMINHO_ARQUIVO, "utf-8");
@@ -13,7 +11,6 @@ function lerArquivo(): any[] {
   return JSON.parse(conteudo);
 }
 
-// Escreve o array de objetos de volta no arquivo JSON
 function escreverArquivo(dados: any[]): void {
   fs.writeFileSync(CAMINHO_ARQUIVO, JSON.stringify(dados, null, 2), "utf-8");
 }
@@ -25,7 +22,7 @@ export class LivroRepository {
   }
 
   buscarPorId(id: string): Livro | null {
-    const livro = this.listarTodos().find((l) => l.getId() === id);
+    const livro = this.listarTodos().find((l) => String(l.getId()) === String(id));
     return livro ?? null;
   }
 
@@ -37,7 +34,7 @@ export class LivroRepository {
 
   atualizar(id: string, livroAtualizado: Livro): boolean {
     const dados = lerArquivo();
-    const index = dados.findIndex((l) => l.id === id);
+    const index = dados.findIndex((l) => String(l.id) === String(id));
     if (index === -1) return false;
     dados[index] = livroAtualizado.toJSON();
     escreverArquivo(dados);
@@ -46,9 +43,13 @@ export class LivroRepository {
 
   remover(id: string): boolean {
     const dados = lerArquivo();
-    const novaLista = dados.filter((l) => l.id !== id);
+    const novaLista = dados.filter((l) => String(l.id) !== String(id));
     if (novaLista.length === dados.length) return false;
     escreverArquivo(novaLista);
     return true;
+  }
+
+  limpar(): void {
+    escreverArquivo([]);
   }
 }
