@@ -1,30 +1,50 @@
 <!-- Formulario de cadastro/edicao de aluno -->
-<!-- Tela de registro de usuario -->
-<%- include('../partials/header') %>
-<%- include('../partials/nav') %>
+<%- include('../partials/header', { titulo: aluno ? 'Editar Aluno' : 'Novo Aluno' }) %>
+<%- include('../partials/nav', { paginaAtual: 'alunos' }) %>
 
 <section class="novidades">
-    <h2>Criar Conta</h2>
-    <p>Cadastre-se para acessar a biblioteca!</p>
+    <h2><%= aluno ? 'Editar Aluno' : 'Cadastrar Aluno' %></h2>
+    <p>Preencha os dados do estudante abaixo.</p>
 
     <div class="cardF">
         <% if (typeof erro !== 'undefined' && erro) { %>
             <p class="erro" style="display: block; margin-bottom: 20px;"><%= erro %></p>
         <% } %>
 
-        <form action="/registro" method="POST">
-            <input type="text" name="nome" placeholder="Nome Completo" required>
-            <input type="email" name="email" placeholder="E-mail" required>
-            <input type="password" name="senha" placeholder="Crie uma Senha" required>
+        <form action="<%= aluno ? '/alunos/' + aluno.getId() + '?_method=PUT' : '/alunos' %>" method="POST">
+            <label for="nome">Nome Completo</label>
+            <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                placeholder="Nome do aluno" 
+                value="<%= aluno ? aluno.getNome() : '' %>" 
+                required
+            >
 
-            <button type="submit">Registrar</button>
+            <label for="turma">Turma</label>
+            <input 
+                type="text" 
+                id="turma" 
+                name="turma" 
+                placeholder="Ex: 3º Ano A" 
+                value="<%= aluno ? aluno.getTurma() : '' %>" 
+                required
+            >
+
+            <label for="matricula">Matrícula</label>
+            <input 
+                type="text" 
+                id="matricula" 
+                name="matricula" 
+                placeholder="Número da matrícula" 
+                value="<%= aluno ? aluno.getMatricula() : '' %>" 
+                required
+            >
+
+            <button type="submit"><%= aluno ? 'Salvar alterações' : 'Cadastrar Aluno' %></button>
         </form>
-        
-        <p style="margin-top: 20px;">
-            Já tem uma conta? <a href="/login" style="color: #ff7600; font-weight: bold;">Faça login</a>
-        </p>
     </div>
 </section>
 
-<script src="/js/auth.js"></script>
-<%- include('../partials/footer') %>
+<%- include('../partials/footer', { script: 'alunos' }) %>
