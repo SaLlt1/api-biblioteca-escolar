@@ -13,7 +13,7 @@ router.get("/alunos", authGuard, (req, res) => {
 });
 
 router.get("/alunos/novo", authGuard, (req, res) => {
-  res.render("alunos/formulario", { aluno: null, erro: null });
+  res.render("alunos/form", { aluno: null, erro: null });
 });
 
 router.post("/alunos", authGuard, (req, res) => {
@@ -23,7 +23,7 @@ router.post("/alunos", authGuard, (req, res) => {
   const erros = novoAluno.validar();
 
   if (erros.length > 0) {
-    return res.render("alunos/formulario", { aluno: null, erro: erros.join(" ") });
+    return res.render("alunos/form", { aluno: null, erro: erros.join(" ") });
   }
 
   alunoRepository.criar(novoAluno);
@@ -34,7 +34,7 @@ router.get("/alunos/:id/editar", authGuard, (req, res) => {
   const id = req.params.id as string;
   const aluno = alunoRepository.buscarPorId(id);
   if (!aluno) return res.status(404).send("Aluno não encontrado.");
-  res.render("alunos/formulario", { aluno, erro: null });
+  res.render("alunos/form", { aluno, erro: null });
 });
 
 router.put("/alunos/:id", authGuard, (req, res) => {
@@ -47,7 +47,7 @@ router.put("/alunos/:id", authGuard, (req, res) => {
   const erros = alunoAtualizado.validar();
 
   if (erros.length > 0) {
-    return res.render("alunos/formulario", { aluno: alunoExistente, erro: erros.join(" ") });
+    return res.render("alunos/form", { aluno: alunoExistente, erro: erros.join(" ") });
   }
 
   alunoRepository.atualizar(id, alunoAtualizado);

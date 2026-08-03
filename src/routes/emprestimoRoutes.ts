@@ -19,7 +19,7 @@ emprestimoRouter.get("/emprestimos", authGuard, (req, res) => {
 emprestimoRouter.get("/emprestimos/novo", authGuard, (req, res) => {
   const livros = livroRepository.listarTodos();
   const alunos = alunoRepository.listarTodos();
-  res.render("emprestimos/formulario", { emprestimo: null, livros, alunos, erro: null });
+  res.render("emprestimos/form", { emprestimo: null, livros, alunos, erro: null });
 });
 
 emprestimoRouter.post("/emprestimos", authGuard, (req, res) => {
@@ -30,7 +30,7 @@ emprestimoRouter.post("/emprestimos", authGuard, (req, res) => {
   if (erros.length > 0) {
     const livros = livroRepository.listarTodos();
     const alunos = alunoRepository.listarTodos();
-    return res.render("emprestimos/formulario", { emprestimo: null, livros, alunos, erro: erros.join(" ") });
+    return res.render("emprestimos/form", { emprestimo: null, livros, alunos, erro: erros.join(" ") });
   }
 
   emprestimoRepository.criar(novoEmprestimo);
@@ -43,7 +43,7 @@ emprestimoRouter.get("/emprestimos/:id/editar", authGuard, (req, res) => {
   if (!emprestimo) return res.status(404).send("Empréstimo não encontrado.");
   const livros = livroRepository.listarTodos();
   const alunos = alunoRepository.listarTodos();
-  res.render("emprestimos/formulario", { emprestimo, livros, alunos, erro: null });
+  res.render("emprestimos/form", { emprestimo, livros, alunos, erro: null });
 });
 
 emprestimoRouter.put("/emprestimos/:id", authGuard, (req, res) => {
@@ -58,7 +58,7 @@ emprestimoRouter.put("/emprestimos/:id", authGuard, (req, res) => {
   if (erros.length > 0) {
     const livros = livroRepository.listarTodos();
     const alunos = alunoRepository.listarTodos();
-    return res.render("emprestimos/formulario", { emprestimo: emprestimoExistente, livros, alunos, erro: erros.join(" ") });
+    return res.render("emprestimos/form", { emprestimo: emprestimoExistente, livros, alunos, erro: erros.join(" ") });
   }
 
   emprestimoRepository.atualizar(id, emprestimoAtualizado);

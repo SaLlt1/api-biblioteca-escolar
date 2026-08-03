@@ -8,7 +8,7 @@ const authRouter = Router();
 const usuarioRepository = new UsuarioRepository();
 
 authRouter.get("/registro", (req, res) => {
-  res.render("registro", { erro: null });
+  res.render("auth/registro", { erro: null });
 });
 
 authRouter.post("/registro", async (req, res) => {
@@ -18,17 +18,17 @@ authRouter.post("/registro", async (req, res) => {
     const novoUsuario = new Usuario(randomUUID(), nome, email, senhaHash);
     const erros = novoUsuario.validar();
     if (erros.length > 0) {
-      return res.render("registro", { erro: erros.join(" ") });
+      return res.render("auth/registro", { erro: erros.join(" ") });
     }
     usuarioRepository.criar(novoUsuario);
     res.redirect("/login");
   } catch (erro) {
-    res.status(500).render("registro", { erro: "Erro ao registrar usuário." });
+    res.status(500).render("auth/registro", { erro: "Erro ao registrar usuário." });
   }
 });
 
 authRouter.get("/login", (req, res) => {
-  res.render("login", { erro: null });
+  res.render("auth/login", { erro: null });
 });
 
 authRouter.post("/login", async (req, res) => {
@@ -36,16 +36,16 @@ authRouter.post("/login", async (req, res) => {
     const { email, senha } = req.body;
     const usuario = usuarioRepository.listarTodos().find((u) => u.getEmail() === email);
     if (!usuario) {
-      return res.render("login", { erro: "E-mail ou senha inválidos." });
+      return res.render("auth/login", { erro: "E-mail ou senha inválidos." });
     }
     const senhaCorreta = await bcrypt.compare(senha, usuario.getSenhaHash());
     if (!senhaCorreta) {
-      return res.render("login", { erro: "E-mail ou senha inválidos." });
+      return res.render("auth/login", { erro: "E-mail ou senha inválidos." });
     }
     (req.session as any).usuarioId = usuario.getId();
     res.redirect("/livros");
   } catch (erro) {
-    res.status(500).render("login", { erro: "Erro ao fazer login." });
+    res.status(500).render("auth/login", { erro: "Erro ao fazer login." });
   }
 });
 
