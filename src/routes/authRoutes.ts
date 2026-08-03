@@ -1,62 +1,76 @@
 import { Router } from "express";
-import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
-import { UsuarioRepository } from "../models/UsuarioRepository";
-import { Usuario } from "../entities/Usuario";
+import { EmprestimoRepository } from "../models/EmprestimoRepository";
+import { Emprestimo } from "../entities/Emprestimo";
+import { LivroRepository } from "../models/LivroRepository";
+import { AlunoRepository } from "../models/AlunoRepository";
+import { authGuard } from "../middlewares/authGuard";
 
-const authRouter = Router();
-const usuarioRepository = new UsuarioRepository();
+const emprestimoRouter = Router();
+const emprestimoRepository = new EmprestimoRepository();
+const livroRepository = new LivroRepository();
+const alunoRepository = new AlunoRepository();
 
-authRouter.get("/registro", (req, res) => {
-  res.render("auth/registro", { erro: null });
+emprestimoRouter.get("/emprestimos", authGuard, (req, res) => {
+  const emprestimos = emprestimoRepository.listarTodos();
+  const livros = livroRepository.listarTodos();
+  const alunos = alunoRepository.listarTodos();
+  res.render("emprestimos/listar", { emprestimos, livros, alunos });
 });
 
-authRouter.post("/registro", async (req, res) => {
-  try {
-    const { nome, email, senha } = req.body;
-    const senhaHash = await bcrypt.hash(senha, 10);
-    const novoUsuario = new Usuario(randomUUID(), nome, email, senhaHash);
-    const erros = novoUsuario.validar();
-    if (erros.length > 0) {
-      return res.render("auth/registro", { erro: erros.join(" ") });
-    }
-    usuarioRepository.criar(novoUsuario);
-    res.redirect("/login");
-  } catch (erro) {
-    res.status(500).render("auth/registro", { erro: "Erro ao registrar usuário." });
+emprestimoRouter.get("/emprestimos/novo", authGuard, (req, res) => {
+  const livros = livroRepository.listarTodos();
+  const alunos = alunoRepository.listarTodos();
+  res.render("emprestimos/form", { emprestimo: null, livros, alunos, erro: null });
+});
+
+emprestimoRouter.post("/emprestimos", authGuard, (req, res) => {
+  const { livroId, alunoId, dataEmprestimo, dataDevolucaoPrevista } = req.body;
+  const novoEmprestimo = new Emprestimo(randomUUID(), livroId, alunoId, dataEmprestimo, dataDevolucaoPrevista);
+  const erros = novoEmprestimo.validar();
+
+  if (erros.length > 0) {
+    const livros = livroRepository.listarTodos();
+    const alunos = alunoRepository.listarTodos();
+    return res.render("emprestimos/form", { emprestimo: null, livros, alunos, erro: erros.join(" ") });
   }
+
+  emprestimoRepository.criar(novoEmprestimo);
+  res.redirect("/emprestimos");
 });
 
-authRouter.get("/login", (req, res) => {
-  res.render("auth/login", { erro: null });
+emprestimoRouter.get("/emprestimos/:id/editar", authGuard, (req, res) => {
+  const id = req.params.id as string;
+  const emprestimo = emprestimoRepository.buscarPorId(id);
+  if (!emprestimo) return res.status(404).send("Empréstimo não encontrado.");
+  const livros = livroRepository.listarTodos();
+  const alunos = alunoRepository.listarTodos();
+  res.render("emprestimos/form", { emprestimo, livros, alunos, erro: null });
 });
 
-authRouter.post("/login", async (req, res) => {
-  try {
-    const { email, senha } = req.body;
-    const usuario = usuarioRepository.listarTodos().find((u) => u.getEmail() === email);
-    if (!usuario) {
-      return res.render("auth/login", { erro: "E-mail ou senha inválidos." });
-    }
-    const senhaCorreta = await bcrypt.compare(senha, usuario.getSenhaHash());
-    if (!senhaCorreta) {
-      return res.render("auth/login", { erro: "E-mail ou senha inválidos." });
-    }
-    (req.session as any).usuarioId = usuario.getId();
-    res.redirect("/livros");
-  } catch (erro) {
-    res.status(500).render("auth/login", { erro: "Erro ao fazer login." });
+emprestimoRouter.put("/emprestimos/:id", authGuard, (req, res) => {
+  const id = req.params.id as string;
+  const emprestimoExistente = emprestimoRepository.buscarPorId(id);
+  if (!emprestimoExistente) return res.status(404).send("Empréstimo não encontrado.");
+
+  const { livroId, alunoId, dataEmprestimo, dataDevolucaoPrevista, devolvido } = req.body;
+  const emprestimoAtualizado = new Emprestimo(id, livroId, alunoId, dataEmprestimo, dataDevolucaoPrevista, devolvido === "on");
+  const erros = emprestimoAtualizado.validar();
+
+  if (erros.length > 0) {
+    const livros = livroRepository.listarTodos();
+    const alunos = alunoRepository.listarTodos();
+    return res.render("emprestimos/form", { emprestimo: emprestimoExistente, livros, alunos, erro: erros.join(" ") });
   }
+
+  emprestimoRepository.atualizar(id, emprestimoAtualizado);
+  res.redirect("/emprestimos");
 });
 
-authRouter.post("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy(() => {
-      res.redirect("/login");
-    });
-  } else {
-    res.redirect("/login");
-  }
+emprestimoRouter.delete("/emprestimos/:id", authGuard, (req, res) => {
+  const id = req.params.id as string;
+  emprestimoRepository.remover(id);
+  res.redirect("/emprestimos");
 });
 
-export default authRouter;
+export default emprestimoRouter;
