@@ -32,7 +32,5 @@ app.use(
 
 // Rota de teste só pra confirmar que tá tudo funcionando
 app.get("/", (req, res) => {
-  res.send("Servidor da biblioteca escolar funcionando!");
+  res.render("index"); // era: res.redirect("/livros")
 });
-
-export default app;
