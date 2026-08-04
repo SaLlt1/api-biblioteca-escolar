@@ -1,47 +1,52 @@
-<!-- Listagem de emprestimos -->
-<%- include('../partials/header', { titulo: 'Empréstimos' }) %>
-<%- include('../partials/nav', { paginaAtual: 'emprestimos' }) %>
+<!-- Listagem de alunos -->
+<%- include('../partials/header', { titulo: 'Alunos' }) %>
+<%- include('../partials/nav', { paginaAtual: 'alunos' }) %>
 
 <section class="novidades">
 
-    <h2>Empréstimos</h2>
+    <h2>Alunos Cadastrados</h2>
 
     <p>
-        <a href="/emprestimos/novo" class="botao">+ Novo Empréstimo</a>
+        <a href="/alunos/novo" class="botao">+ Novo Aluno</a>
     </p>
 
-    <% if (emprestimos.length === 0) { %>
+    <div class="pesquisa">
+        <input
+            type="search"
+            id="buscaAlunos"
+            placeholder="Buscar por nome ou turma..."
+        >
+        <button type="button" aria-label="Buscar">🔍</button>
+    </div>
 
-        <p class="centralizar mt">Nenhum empréstimo registrado ainda.</p>
+    <% if (alunos.length === 0) { %>
+
+        <p class="centralizar mt">Nenhum aluno cadastrado ainda.</p>
 
     <% } else { %>
 
-        <table id="tabelaEmprestimos">
+        <table id="tabelaAlunos">
             <thead>
                 <tr>
-                    <th>Livro</th>
-                    <th>Aluno</th>
-                    <th>Empréstimo</th>
-                    <th>Devolução prevista</th>
-                    <th>Status</th>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Matrícula</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <% emprestimos.forEach(function (emprestimo) { %>
-                    <% const livro = livros.find(function (l) { return l.getId() === emprestimo.getLivroId(); }); %>
-                    <% const aluno = alunos.find(function (a) { return a.getId() === emprestimo.getAlunoId(); }); %>
+                <% alunos.forEach(function (aluno) { %>
                     <tr>
-                        <td><%= livro ? livro.getTitulo() : 'Livro removido' %></td>
-                        <td><%= aluno ? aluno.getNome() : 'Aluno removido' %></td>
-                        <td><%= emprestimo.getDataEmprestimo() %></td>
-                        <td><%= emprestimo.getDataDevolucaoPrevista() %></td>
-                        <td><%= emprestimo.isDevolvido() ? 'Devolvido' : 'Em aberto' %></td>
+                        <td><%= aluno.getNome() %></td>
+                        <td><%= aluno.getTurma() %></td>
+                        <td><%= aluno.getMatricula() %></td>
                         <td>
-                            <a href="/emprestimos/<%= emprestimo.getId() %>/editar">Editar</a>
+                            <a href="/alunos/<%= aluno.getId() %>">Detalhes</a>
                             &nbsp;|&nbsp;
-                            <form action="/emprestimos/<%= emprestimo.getId() %>?_method=DELETE" method="POST" style="display:inline"
-                                  onsubmit="return confirm('Tem certeza que deseja remover este empréstimo?');">
+                            <a href="/alunos/<%= aluno.getId() %>/editar">Editar</a>
+                            &nbsp;|&nbsp;
+                            <form action="/alunos/<%= aluno.getId() %>?_method=DELETE" method="POST" style="display:inline"
+                                  onsubmit="return confirm('Tem certeza que deseja remover este aluno?');">
                                 <button type="submit" class="link-botao">Remover</button>
                             </form>
                         </td>
@@ -54,4 +59,4 @@
 
 </section>
 
-<%- include('../partials/footer', { script: 'emprestimos' }) %>
+<%- include('../partials/footer', { script: 'alunos' }) %>

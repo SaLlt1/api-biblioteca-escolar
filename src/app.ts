@@ -3,6 +3,7 @@ import express from "express";
 import session from "express-session";
 import methodOverride from "method-override";
 import path from "path";
+import { LivroRepository } from "./models/LivroRepository";
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
 app.use(
   session({
-    secret: "troque-essa-chave-depois", 
+    secret: "troque-essa-chave-depois",
     resave: false,
     saveUninitialized: false,
   })
@@ -35,8 +36,11 @@ app.use(livroRoutes);
 app.use(alunoRoutes);
 app.use(emprestimoRoutes);
 
+const livroRepositoryHome = new LivroRepository();
+
 app.get("/", (req, res) => {
-  res.render("index"); // era: res.redirect("/livros")
+  const livrosEmDestaque = livroRepositoryHome.listarTodos().slice(0, 4);
+  res.render("index", { livros: livrosEmDestaque });
 });
 
 export default app;

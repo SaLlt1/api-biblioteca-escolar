@@ -3,8 +3,8 @@ import { Router } from "express";
 import { randomUUID } from "crypto";
 import { LivroRepository } from "../models/LivroRepository";
 import { Livro } from "../entities/Livro";
-import { authGuard } from "../middlewares/authMiddleware"; // era "../middlewares/authGuard"
-import { upload } from "../middlewares/uploadMiddleware";   // era "../middlewares/upload"
+import { authGuard } from "../middlewares/authMiddleware";
+import { upload } from "../middlewares/uploadMiddleware";
 
 const router = Router();
 const livroRepository = new LivroRepository();
@@ -22,6 +22,17 @@ router.get("/livros", authGuard, (req, res) => {
 // Formulário de criação
 router.get("/livros/novo", authGuard, (req, res) => {
   res.render("livros/form", { livro: null, erro: null });
+});
+
+// Detalhes de um livro
+router.get("/livros/:id", authGuard, (req, res) => {
+  try {
+    const livro = livroRepository.buscarPorId(req.params.id);
+    if (!livro) return res.status(404).send("Livro não encontrado.");
+    res.render("livros/detalhes", { livro });
+  } catch (erro) {
+    res.status(500).send("Erro ao carregar os detalhes do livro.");
+  }
 });
 
 // Criar

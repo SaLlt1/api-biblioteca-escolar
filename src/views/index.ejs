@@ -23,26 +23,21 @@
         Alguns dos livros disponíveis na biblioteca.
     </p>
     <div class="cards">
-        <div class="card">
-            <div class="imagem"></div>
-            <h3>Dom Casmurro</h3>
-             <button>Detalhes...</button>
-        </div>
-        <div class="card">
-            <div class="imagem"></div>
-            <h3>O Pequeno Príncipe</h3>
-            <button>Detalhes</button>
-        </div>
-        <div class="card">
-            <div class="imagem"></div>
-            <h3>Harry Potter</h3>
-            <button>Detalhes</button>
-        </div>
-        <div class="card">
-            <div class="imagem"></div>
-            <h3>O Hobbit</h3>
-            <button>Detalhes</button>
-        </div>
+        <% if (livros.length === 0) { %>
+            <p class="centralizar mt">Nenhum livro cadastrado ainda.</p>
+        <% } else { %>
+            <% livros.forEach(function (livro) { %>
+                <div class="card">
+                    <div class="imagem">
+                        <% if (livro.getCapaUrl()) { %>
+                            <img src="<%= livro.getCapaUrl() %>" alt="Capa de <%= livro.getTitulo() %>" style="width:100%; border-radius: 10px;">
+                        <% } %>
+                    </div>
+                    <h3><%= livro.getTitulo() %></h3>
+                    <a href="/livros/<%= livro.getId() %>"><button>Detalhes</button></a>
+                </div>
+            <% }); %>
+        <% } %>
     </div>
 </section>
 <%- include('partials/footer') %>
