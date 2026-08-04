@@ -3,8 +3,8 @@ import { Router } from "express";
 import { randomUUID } from "crypto";
 import { LivroRepository } from "../models/LivroRepository";
 import { Livro } from "../entities/Livro";
-import { authGuard } from "../middlewares/authGuard";
-import { upload } from "../middlewares/upload";
+import { authGuard } from "../middlewares/authMiddleware"; // era "../middlewares/authGuard"
+import { upload } from "../middlewares/uploadMiddleware";   // era "../middlewares/upload"
 
 const router = Router();
 const livroRepository = new LivroRepository();
