@@ -21,7 +21,7 @@ router.get("/livros", authGuard, (req, res) => {
 
 // Formulário de criação
 router.get("/livros/novo", authGuard, (req, res) => {
-  res.render("livros/formulario", { livro: null, erro: null });
+  res.render("livros/form", { livro: null, erro: null });
 });
 
 // Criar
@@ -34,13 +34,13 @@ router.post("/livros", authGuard, upload.single("capa"), (req, res) => {
     const erros = novoLivro.validar();
 
     if (erros.length > 0) {
-      return res.render("livros/formulario", { livro: null, erro: erros.join(" ") });
+      return res.render("livros/form", { livro: null, erro: erros.join(" ") });
     }
 
     livroRepository.criar(novoLivro);
     res.redirect("/livros");
   } catch (erro) {
-    res.status(500).render("livros/formulario", { livro: null, erro: "Erro ao criar o livro." });
+    res.status(500).render("livros/form", { livro: null, erro: "Erro ao criar o livro." });
   }
 });
 
@@ -49,7 +49,7 @@ router.get("/livros/:id/editar", authGuard, (req, res) => {
   try {
     const livro = livroRepository.buscarPorId(req.params.id);
     if (!livro) return res.status(404).send("Livro não encontrado.");
-    res.render("livros/formulario", { livro, erro: null });
+    res.render("livros/form", { livro, erro: null });
   } catch (erro) {
     res.status(500).send("Erro ao carregar o livro.");
   }
@@ -68,13 +68,13 @@ router.put("/livros/:id", authGuard, upload.single("capa"), (req, res) => {
     const erros = livroAtualizado.validar();
 
     if (erros.length > 0) {
-      return res.render("livros/formulario", { livro: livroExistente, erro: erros.join(" ") });
+      return res.render("livros/form", { livro: livroExistente, erro: erros.join(" ") });
     }
 
     livroRepository.atualizar(req.params.id, livroAtualizado);
     res.redirect("/livros");
   } catch (erro) {
-    res.status(500).render("livros/formulario", { livro: null, erro: "Erro ao atualizar o livro." });
+    res.status(500).render("livros/form", { livro: null, erro: "Erro ao atualizar o livro." });
   }
 });
 
