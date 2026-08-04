@@ -2,7 +2,7 @@ import { Router } from "express";
 import { randomUUID } from "crypto";
 import { AlunoRepository } from "../models/AlunoRepository";
 import { Aluno } from "../entities/Aluno";
-import { authGuard } from "../middlewares/authGuard";
+import { authGuard } from "../middlewares/authMiddleware"; // era "../middlewares/authGuard"
 
 const router = Router();
 const alunoRepository = new AlunoRepository();
