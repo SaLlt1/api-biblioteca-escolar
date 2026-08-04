@@ -1,60 +1,55 @@
-<!-- Listagem de livros -->
-<%- include('../partials/header', { titulo: 'Livros' }) %>
-<%- include('../partials/nav', { paginaAtual: 'livros' }) %>
+<%- include('../partials/header', { titulo: 'Empréstimos' }) %>
+<%- include('../partials/nav', { paginaAtual: 'emprestimos' }) %>
 
 <section class="novidades">
 
-    <h2>Acervo de Livros</h2>
+    <h2>Empréstimos</h2>
 
     <p>
-        <a href="/livros/novo" class="botao">+ Novo Livro</a>
+        <a href="/emprestimos/novo" class="botao">+ Novo Empréstimo</a>
     </p>
 
-    <div class="pesquisa">
-        <input
-            type="search"
-            id="buscaLivros"
-            placeholder="Buscar por título, autor ou ano..."
-        >
-        <button type="button" aria-label="Buscar">🔍</button>
-    </div>
+    <% if (emprestimos.length === 0) { %>
 
-    <% if (livros.length === 0) { %>
-
-        <p class="centralizar mt">Nenhum livro cadastrado no acervo ainda.</p>
+        <p class="centralizar mt">Nenhum empréstimo registrado ainda.</p>
 
     <% } else { %>
 
-        <table id="tabelaLivros">
+        <table>
             <thead>
                 <tr>
-                    <th>Capa</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Ano</th>
+                    <th>Livro</th>
+                    <th>Aluno</th>
+                    <th>Data empréstimo</th>
+                    <th>Devolução prevista</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <% livros.forEach(function (livro) { %>
+                <% emprestimos.forEach(function (emprestimo) {
+                    var nomeLivro = emprestimo.getLivroId();
+                    var nomeAluno = emprestimo.getAlunoId();
+                    if (typeof livros !== 'undefined') {
+                        var l = livros.find(function (x) { return x.getId() === emprestimo.getLivroId(); });
+                        if (l) nomeLivro = l.getTitulo();
+                    }
+                    if (typeof alunos !== 'undefined') {
+                        var a = alunos.find(function (x) { return x.getId() === emprestimo.getAlunoId(); });
+                        if (a) nomeAluno = a.getNome();
+                    }
+                %>
                     <tr>
+                        <td><%= nomeLivro %></td>
+                        <td><%= nomeAluno %></td>
+                        <td><%= emprestimo.getDataEmprestimo() %></td>
+                        <td><%= emprestimo.getDataDevolucaoPrevista() %></td>
+                        <td><%= emprestimo.isDevolvido() ? 'Devolvido' : 'Em aberto' %></td>
                         <td>
-                            <% if (livro.getCapaUrl()) { %>
-                                <img src="<%= livro.getCapaUrl() %>" alt="Capa" width="40" style="border-radius: 5px;">
-                            <% } else { %>
-                                <div style="width: 40px; height: 55px; background: #eee; border-radius: 5px; display: inline-block;"></div>
-                            <% } %>
-                        </td>
-                        <td><%= livro.getTitulo() %></td>
-                        <td><%= livro.getAutor() %></td>
-                        <td><%= livro.getAnoPublicacao() %></td>
-                        <td>
-                            <a href="/livros/<%= livro.getId() %>">Detalhes</a>
+                            <a href="/emprestimos/<%= emprestimo.getId() %>/editar">Editar</a>
                             &nbsp;|&nbsp;
-                            <a href="/livros/<%= livro.getId() %>/editar">Editar</a>
-                            &nbsp;|&nbsp;
-                            <form action="/livros/<%= livro.getId() %>?_method=DELETE" method="POST" style="display:inline"
-                                  onsubmit="return confirm('Tem certeza que deseja remover este livro do acervo?');">
+                            <form action="/emprestimos/<%= emprestimo.getId() %>?_method=DELETE" method="POST" style="display:inline"
+                                  onsubmit="return confirm('Tem certeza que deseja remover este empréstimo?');">
                                 <button type="submit" class="link-botao">Remover</button>
                             </form>
                         </td>
@@ -67,4 +62,4 @@
 
 </section>
 
-<%- include('../partials/footer', { script: 'livros' }) %>
+<%- include('../partials/footer', { script: 'emprestimos' }) %>
