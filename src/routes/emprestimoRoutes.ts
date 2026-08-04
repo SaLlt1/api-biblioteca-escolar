@@ -4,7 +4,7 @@ import { EmprestimoRepository } from "../models/EmprestimoRepository";
 import { Emprestimo } from "../entities/Emprestimo";
 import { LivroRepository } from "../models/LivroRepository";
 import { AlunoRepository } from "../models/AlunoRepository";
-import { authGuard } from "../middlewares/authGuard";
+import { authGuard } from "../middlewares/authMiddleware"; // era "../middlewares/authGuard"
 
 const emprestimoRouter = Router();
 const emprestimoRepository = new EmprestimoRepository();
