@@ -1,0 +1,50 @@
+<!-- Formulario de cadastro/edicao de aluno -->
+<%- include('../partials/header', { titulo: aluno ? 'Editar Aluno' : 'Novo Aluno' }) %>
+<%- include('../partials/nav', { paginaAtual: 'alunos' }) %>
+
+<section class="novidades">
+    <h2><%= aluno ? 'Editar Aluno' : 'Cadastrar Aluno' %></h2>
+    <p>Preencha os dados do estudante abaixo.</p>
+
+    <div class="cardF">
+        <% if (typeof erro !== 'undefined' && erro) { %>
+            <p class="erro" style="display: block; margin-bottom: 20px;"><%= erro %></p>
+        <% } %>
+
+        <form action="<%= aluno ? '/alunos/' + aluno.getId() + '?_method=PUT' : '/alunos' %>" method="POST">
+            <label for="nome">Nome Completo</label>
+            <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                placeholder="Nome do aluno" 
+                value="<%= aluno ? aluno.getNome() : '' %>" 
+                required
+            >
+
+            <label for="turma">Turma</label>
+            <input 
+                type="text" 
+                id="turma" 
+                name="turma" 
+                placeholder="Ex: 3º Ano A" 
+                value="<%= aluno ? aluno.getTurma() : '' %>" 
+                required
+            >
+
+            <label for="matricula">Matrícula</label>
+            <input 
+                type="text" 
+                id="matricula" 
+                name="matricula" 
+                placeholder="Número da matrícula" 
+                value="<%= aluno ? aluno.getMatricula() : '' %>" 
+                required
+            >
+
+            <button type="submit"><%= aluno ? 'Salvar alterações' : 'Cadastrar Aluno' %></button>
+        </form>
+    </div>
+</section>
+
+<%- include('../partials/footer', { script: 'alunos' }) %>

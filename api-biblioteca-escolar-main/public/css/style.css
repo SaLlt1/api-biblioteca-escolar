@@ -1,0 +1,455 @@
+/* Estilo geral do sistema Biblioteca Escolar */
+/* Organizar em secoes: reset, layout, componentes (cards, tabelas, formularios), utilitarios, responsivo */
+
+/* o basico */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Poppins,sans-serif;
+    background:#fff9ef;
+    color:#5d3a1a;
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/*===================================================
+                    layout do site :P
+===================================================*/
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 10%;  
+    background:#FEE27F;
+}
+
+.logo{
+    font-family: Poppins,sans-serif;
+    font-size:2rem;
+    color:#9a4b16;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#6b3d19;
+    font-weight:600;
+    transition:.3s;
+    position: relative;
+}
+
+nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    border-radius: 20px;
+    background: #ff8A00;
+    transition: .3s; 
+}
+
+nav a:hover::after{
+    width: 100%;
+}
+
+nav a:hover{
+    color:#ff7b00;
+}
+
+section {
+    text-align: center;   
+    padding: 40px 20px;   
+}
+/* ===================================================
+                        HERO :D
+=================================================== */
+
+.hero{
+    background:#FFA31A;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;    
+    padding:70px;   
+    border-radius:0 0 50px 50px;  
+}
+
+.hero-text{
+    width:50%;
+}
+
+.hero h1{
+    font-size:3.4rem;
+    font-family:'Patrick Hand';
+    color:white;
+    line-height:1.1;
+}
+
+.hero p{
+    margin:25px 0;
+    color:#fff7e8;
+    font-size:18px;
+}
+
+.botao{
+    display:inline-block;
+    padding:15px 35px;
+    background:white;
+    color:#ff7600;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao:hover{
+    transform:scale(1.08);
+    background:#fdfaf5;;
+}        
+
+
+/* ===================================================
+                        SEPARADOR
+===================================================*/
+
+.onda{
+    height:40px;
+    background:repeating-radial-gradient(circle at 20px 0,#FFA31A 0 20px,#fff9ef 20px 40px);
+}
+
+
+/* ===================================================
+                            CARDS :O
+=================================================== */
+
+.novidades{
+    padding:70px;
+    text-align:center;
+}
+
+.novidades h2{
+    font-family:Poppins,sans-serif;
+    font-size:3rem;
+    color:#ff8a00;
+    letter-spacing: -1px;
+}
+
+.novidades p{
+    margin-top:10px;
+    color:#7A5732;
+    font-size:17px;
+    }
+
+.cards{
+    margin-top:40px;
+    display:grid; 
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:35px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.imagem{
+    height:170px;
+    border-radius:25px;
+    background:#ffe5bc;
+    margin-bottom:15px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.imagem img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-family:Poppins,sans-serif;
+    font: size 25px;
+    letter-spacing: -1px;
+}
+
+.card button{
+    padding:12px 25px;
+    border:none;
+    background:#ff7a3d;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.botao2{
+    display:inline-block;
+    padding:15px 35px;
+    background:#faf3e8;
+    color:#ff7600;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+/* ===================================================
+                        PESQUISA
+=================================================== */
+
+.pesquisa{
+    width:100%;
+    max-width:750px;
+    margin:35px auto;
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border-radius:50px; 
+    overflow:hidden;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.pesquisa input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:18px 25px;
+    font-size:16px;
+    background:transparent;
+}
+
+.pesquisa input::placeholder{
+    color:#B08A64;
+}
+
+.pesquisa button{
+    width:70px;
+    height:60px;
+    border:none;
+    background:#FF8A00;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.pesquisa button:hover{
+    background:#FF9830;
+    transform:scale(1.05);
+}
+
+
+/* ===================================================
+                         FORMULÁRIOS
+=================================================== */
+
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+input{
+    padding:14px;
+    border-radius:15px;
+    border:2px solid #ffd48c;
+    font-size:16px;
+}
+
+.erro{
+    color:red;
+    font-size: 14px;
+    display:none; 
+}
+
+.cardF{
+    max-width: 500px;
+    margin: 30px auto;
+    background:white;
+    padding:60px;
+    border-radius:35px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+    transition:0;
+    animation:aparecer .5s ease;
+}
+
+.cardF p{
+    font-family:Poppins,sans-serif;
+    color: #5d3a1a;
+    text-align: center;
+}
+
+.cardF a{
+    color: #ff7600;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.cardF a:hover {
+    color: #ff3b00; 
+    text-decoration: underline; 
+}
+
+.cardF button {
+    margin: 20px 0 0 0; 
+    padding: 12px 25px;
+    border: none;
+    background: #ff7a3d;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%; 
+}
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+input[type="file"]{
+    width:100%;
+    padding:8px 10px;
+    border:2px solid #ffd48c;
+    border-radius:15px;
+    background:#fff;
+    font-size:15px;
+    color:#7A5732;
+    cursor:pointer;
+}
+
+input[type="file"]::file-selector-button{
+    background:#ff8a00;
+    color:#fff;
+    border:none;
+    border-radius:20px;
+    padding:8px 16px;
+    margin-right:12px;
+    cursor:pointer;
+    font-family:Poppins,sans-serif;
+    font-weight:600;
+    transition:.3s;
+}
+
+input[type="file"]::file-selector-button:hover{
+    background:#ff7600;
+}
+/* ===================================================
+                         TABELAS
+=================================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:30px;
+    background:white;
+}
+
+th{
+    background:#FEE27F;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+}
+
+td a{
+    text-decoration: none;
+    color: #ff7600;
+    font-weight: 600;
+    transition: .3s;
+}
+
+td a:hover{
+    color: #ff4d00;
+    text-decoration: underline;
+}
+
+.link-botao{
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ff7600;
+    font-size: 16px;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.link-botao:hover{
+    color: #ff4d00;
+    text-decoration: underline;
+}
+/* ===================================================
+                         UTILITÁRIOS
+=================================================== */
+
+.centralizar{
+    text-align:center;
+}
+
+.mt{
+    margin-top:30px;
+}
+
+
+/* ===================================================
+                         RODAPÉ
+=================================================== */
+
+footer{
+    padding:30px;
+    background:#FEE27F;
+    text-align:center;
+    margin-top:auto;
+}
+
+/* ===================================================
+                   RESPONSIVO
+=================================================== */
+
+@media(max-width:900px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-text{
+        width:100%;
+    }
+
+    nav{
+        display:none;
+    }
+}

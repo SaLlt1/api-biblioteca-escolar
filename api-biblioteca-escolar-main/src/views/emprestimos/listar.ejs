@@ -1,0 +1,65 @@
+<%- include('../partials/header', { titulo: 'Empréstimos' }) %>
+<%- include('../partials/nav', { paginaAtual: 'emprestimos' }) %>
+
+<section class="novidades">
+
+    <h2>Empréstimos</h2>
+
+    <p>
+        <a href="/emprestimos/novo" class="botao">+ Novo Empréstimo</a>
+    </p>
+
+    <% if (emprestimos.length === 0) { %>
+
+        <p class="centralizar mt">Nenhum empréstimo registrado ainda.</p>
+
+    <% } else { %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Livro</th>
+                    <th>Aluno</th>
+                    <th>Data empréstimo</th>
+                    <th>Devolução prevista</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% emprestimos.forEach(function (emprestimo) {
+                    var nomeLivro = emprestimo.getLivroId();
+                    var nomeAluno = emprestimo.getAlunoId();
+                    if (typeof livros !== 'undefined') {
+                        var l = livros.find(function (x) { return x.getId() === emprestimo.getLivroId(); });
+                        if (l) nomeLivro = l.getTitulo();
+                    }
+                    if (typeof alunos !== 'undefined') {
+                        var a = alunos.find(function (x) { return x.getId() === emprestimo.getAlunoId(); });
+                        if (a) nomeAluno = a.getNome();
+                    }
+                %>
+                    <tr>
+                        <td><%= nomeLivro %></td>
+                        <td><%= nomeAluno %></td>
+                        <td><%= emprestimo.getDataEmprestimo() %></td>
+                        <td><%= emprestimo.getDataDevolucaoPrevista() %></td>
+                        <td><%= emprestimo.isDevolvido() ? 'Devolvido' : 'Em aberto' %></td>
+                        <td>
+                            <a href="/emprestimos/<%= emprestimo.getId() %>/editar">Editar</a>
+                            &nbsp;|&nbsp;
+                            <form action="/emprestimos/<%= emprestimo.getId() %>?_method=DELETE" method="POST" style="display:inline"
+                                  onsubmit="return confirm('Tem certeza que deseja remover este empréstimo?');">
+                                <button type="submit" class="link-botao">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+</section>
+
+<%- include('../partials/footer', { script: 'emprestimos' }) %>

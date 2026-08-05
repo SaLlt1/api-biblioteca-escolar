@@ -1,0 +1,20 @@
+[
+  {
+    "id": "a8e304ff-9810-4b4b-9930-ae4ebf8075ed",
+    "nome": "jolia",
+    "email": "juliafreitasmendes43@gmail.com",
+    "senhaHash": "$2b$10$lhQnbsek9Yd6ZxDlfwvg0OPqQwsaH6pGr8x.sck4Xu4MQJ20tPYDa"
+  },
+  {
+    "id": "24f857fd-589f-49f3-b96c-27544e20c111",
+    "nome": "Teste",
+    "email": "pedr00tur1@gmail.com",
+    "senhaHash": "$2b$10$F3Xfc/oQ/rXv2xFT2ZFt9uVvT0CxXROOYMV6/wloajy8.ssDNLwlu"
+  },
+  {
+    "id": "ce67fa95-b33d-4fba-aa4d-a770cebf5de3",
+    "nome": "pedro",
+    "email": "pedr00tur4sch@gmail.com",
+    "senhaHash": "$2b$10$zfdsd69YxnbbQC/0im1n0.2U7gciZvDYZza6GVhKrRuvnu2Db4zwq"
+  }
+]

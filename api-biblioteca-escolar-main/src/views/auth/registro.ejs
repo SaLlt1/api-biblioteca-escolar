@@ -1,0 +1,29 @@
+<!-- Tela de registro de usuario -->
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<section class="novidades">
+    <h2>Criar Conta</h2>
+    <p>Cadastre-se para gerenciar a biblioteca!</p>
+
+    <div class="cardF">
+        <% if (typeof erro !== 'undefined' && erro) { %>
+            <p class="erro" style="display: block; margin-bottom: 20px;"><%= erro %></p>
+        <% } %>
+
+        <form action="/registro" method="POST">
+            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Crie uma Senha" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+        
+        <p style="margin-top: 20px;">
+            Já tem uma conta? <a href="/login" style="color: #ff7600; font-weight: bold;">Faça login</a>
+        </p>
+    </div>
+</section>
+
+<script src="/js/auth.js"></script>
+<%- include('../partials/footer') %>

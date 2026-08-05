@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>
+            Descubra um novo mundo através da leitura!
+        </h1>
+        <p>
+            Encontre livros incríveis, faça empréstimos e acompanhe tudo em um só lugar.
+        </p>
+        <a href="/livros" class="botao">
+            Ver Livros
+        </a>
+    </div>
+    <div class="hero-img"> </div>
+</section>
+
+<div class="onda"></div>
+<section class="novidades">
+    <h2>Livros em Destaque</h2>
+    <p>
+        Alguns dos livros disponíveis na biblioteca.
+    </p>
+    <div class="cards">
+        <% if (livros.length === 0) { %>
+            <p class="centralizar mt">Nenhum livro cadastrado ainda.</p>
+        <% } else { %>
+            <% livros.forEach(function (livro) { %>
+                <div class="card">
+                    <div class="imagem">
+                        <% if (livro.getCapaUrl()) { %>
+                            <img src="<%= livro.getCapaUrl() %>" alt="Capa de <%= livro.getTitulo() %>">
+                        <% } %>
+                    </div>
+                    <h3><%= livro.getTitulo() %></h3>
+                    <a href="/livros/<%= livro.getId() %>"><button>Detalhes</button></a>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</section>
+<%- include('partials/footer') %>

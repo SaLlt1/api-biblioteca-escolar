@@ -1,0 +1,44 @@
+<!-- Detalhes de um livro -->
+<%- include('../partials/header', { titulo: livro.getTitulo() + ' | Biblioteca Escolar' }) %>
+<%- include('../partials/nav', { paginaAtual: 'livros' }) %>
+
+<main>
+    <section class="novidades">
+        <p class="centralizar">Acervo da Biblioteca</p>
+        <h2>Detalhes do Livro</h2>
+        <p>
+            Informações detalhadas sobre a obra selecionada.
+        </p>
+        <div class="mt centralizar">
+            <a href="/livros" class="botao">← Voltar</a>
+            <a href="/livros/<%= livro.getId() %>/editar" class="botao">Editar livro</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="cards">
+            <article class="card">
+                <h3><%= livro.getTitulo() %></h3>
+
+                <% if (livro.getCapaUrl()) { %>
+                    <div class="centralizar mt">
+                        <img src="<%= livro.getCapaUrl() %>" alt="Capa do Livro" style="max-width: 200px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    </div>
+                <% } %>
+
+                <table class="mt">
+                    <tr>
+                        <th>Autor</th>
+                        <td><%= livro.getAutor() %></td>
+                    </tr>
+                    <tr>
+                        <th>Ano de publicação</th>
+                        <td><%= livro.getAnoPublicacao() %></td>
+                    </tr>
+                </table>
+            </article>
+        </div>
+    </section>
+</main>
+
+<%- include('../partials/footer') %>

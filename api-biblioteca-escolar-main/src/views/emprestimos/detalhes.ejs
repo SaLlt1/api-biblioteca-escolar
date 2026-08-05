@@ -1,0 +1,34 @@
+<%- include('../partials/header', { titulo: 'Detalhes do Empréstimo' }) %>
+<%- include('../partials/nav', { paginaAtual: 'emprestimos' }) %>
+
+<section class="novidades">
+
+    <h2>Detalhes do Empréstimo</h2>
+
+    <div class="cardF">
+
+        <p><strong>Livro (ID):</strong> <%= emprestimo.getLivroId() %></p>
+        <p><strong>Aluno (ID):</strong> <%= emprestimo.getAlunoId() %></p>
+        <p><strong>Data do empréstimo:</strong> <%= emprestimo.getDataEmprestimo() %></p>
+        <p><strong>Devolução prevista:</strong> <%= emprestimo.getDataDevolucaoPrevista() %></p>
+        <p><strong>Status:</strong> <%= emprestimo.isDevolvido() ? 'Devolvido' : 'Em aberto' %></p>
+
+        <% if (!emprestimo.isDevolvido()) { %>
+            <form action="/emprestimos/<%= emprestimo.getId() %>?_method=PUT" method="POST">
+                <input type="hidden" name="livroId" value="<%= emprestimo.getLivroId() %>">
+                <input type="hidden" name="alunoId" value="<%= emprestimo.getAlunoId() %>">
+                <input type="hidden" name="dataEmprestimo" value="<%= emprestimo.getDataEmprestimo() %>">
+                <input type="hidden" name="dataDevolucaoPrevista" value="<%= emprestimo.getDataDevolucaoPrevista() %>">
+                <input type="hidden" name="devolvido" value="on">
+                <button type="submit">Registrar devolução</button>
+            </form>
+        <% } %>
+
+        <a href="/emprestimos/<%= emprestimo.getId() %>/editar"><button>Editar</button></a>
+        <a href="/emprestimos"><button>Voltar para a lista</button></a>
+
+    </div>
+
+</section>
+
+<%- include('../partials/footer') %>
